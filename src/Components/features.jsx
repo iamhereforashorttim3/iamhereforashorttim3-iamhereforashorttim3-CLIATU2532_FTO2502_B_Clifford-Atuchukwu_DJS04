@@ -12,6 +12,15 @@ export function processPodcasts(
     );
   }
 
+  if (genreFilter) {
+    filterItems = filterItems.filter((filt) => {
+      const genreNames = filt.genres.map(
+        (id) => genres.find((genre) => genre.id === id)?.title
+      );
+      return genreNames.includes(genreFilter);
+    });
+  }
+
   if (sortOrder === "az") {
     filterItems.sort((a, b) => a.title.localeCompare(b.title));
   } else if (sortOrder === "za") {
