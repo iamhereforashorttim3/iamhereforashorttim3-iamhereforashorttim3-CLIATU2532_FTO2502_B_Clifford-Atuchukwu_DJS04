@@ -20,7 +20,7 @@ function App() {
   const search = searchParams.get("search") || "";
   const sort = searchParams.get("sort") || "";
   const page = parseInt(searchParams.get("page") || "1");
-  const perPage = 10;
+  const perPage = 9;
 
   /**
    * It fetches the podcast data from an external API and updates the local state.
@@ -88,13 +88,20 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="controls">
-        <input
-          value={search}
-          placeholder="search..."
-          onChange={(e) => updateParam("search", e.target.value)}
-        />
+      <header className="header">
+        <h3 class="header-title">ReactCast</h3>
 
+        <div className="search">
+          <input
+            type="search"
+            value={search}
+            placeholder="search..."
+            onChange={(e) => updateParam("search", e.target.value)}
+          />
+        </div>
+      </header>
+
+      <div className="sort">
         <select
           value={sort}
           onChange={(e) => updateParam("sort", e.target.value)}
