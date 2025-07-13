@@ -6,6 +6,8 @@ import { formatDistanceToNow } from "date-fns";
 import { useSearchParams } from "react-router-dom";
 import { processPodcasts } from "./Components/features.jsx";
 /**
+ * This component is for displaying and managing the podcasts.
+ * It is also for filtering, sorting, search and pagination functionality.
  *
  * @returns {Jsx Element} It returns the loading indicator, error messages, and the list of the podcast previews
  */
@@ -21,6 +23,9 @@ function App() {
   const perPage = 10;
 
   /**
+   * It fetches the podcast data from an external API and updates the local state.
+   *runs once the component mounts
+
    * @async
    * @function fetchData
    * @throws new error if the response is not ok
@@ -48,6 +53,10 @@ function App() {
     fetchData();
   }, []);
 
+  /**
+   * @param {string} key - parameter name ("search", "sort", "page")
+   * @param {string|number} value - New value to be set
+   */
   const updateParam = (key, value) => {
     const next = new URLSearchParams(searchParams);
     value ? next.set(key, value) : next.delete(key);
@@ -55,6 +64,9 @@ function App() {
     setSearchParams(next);
   };
 
+  /**
+   * It gets the paginated and filtered data
+   */
   const { paginatedData, totalPages } = processPodcasts(podcastData, {
     searchTerm: search,
     sortOrder: sort,
