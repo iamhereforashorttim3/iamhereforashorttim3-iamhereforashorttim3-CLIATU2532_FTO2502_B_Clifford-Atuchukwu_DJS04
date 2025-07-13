@@ -102,33 +102,35 @@ function App() {
           />
         </div>
       </header>
+      <div className="controls">
+        <div className="sort">
+          <select
+            value={sort}
+            onChange={(e) => updateParam("sort", e.target.value)}
+          >
+            <option value="">Sort</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+            <option value="new">Newest</option>
+            <option value="old">Oldest</option>
+          </select>
+        </div>
 
-      <div className="sort">
-        <select
-          value={sort}
-          onChange={(e) => updateParam("sort", e.target.value)}
-        >
-          <option value="">Sort</option>
-          <option value="az">A-Z</option>
-          <option value="za">Z-A</option>
-          <option value="new">Newest</option>
-          <option value="old">Oldest</option>
-        </select>
+        <div className="filter">
+          <select
+            value={genre}
+            onChange={(g) => updateParam("genre", g.target.value)}
+          >
+            <option value="">All Genres</option>
+            {genres.map((genre) => (
+              <option key={genre.id} value={genre.title}>
+                {genre.title}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      <div className="filter">
-        <select
-          value={genre}
-          onChange={(g) => updateParam("genre", g.target.value)}
-        >
-          <option value="">All Genres</option>
-          {genres.map((genre) => (
-            <option key={genre.id} value={genre.title}>
-              {genre.title}
-            </option>
-          ))}
-        </select>
-      </div>
       {loading && <p className="status">Loading podcasts...</p>}
 
       {error && <p className="status error">Error: {error}</p>}
