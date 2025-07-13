@@ -1,6 +1,8 @@
+import { genres } from "./data";
+
 export function processPodcasts(
   data,
-  { searchTerm, sortOrder, currentPage, itemsPerPage }
+  { searchTerm, sortOrder, genreFilter, currentPage, itemsPerPage }
 ) {
   let filterItems = data;
 
