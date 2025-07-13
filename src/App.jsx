@@ -19,6 +19,7 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get("search") || "";
   const sort = searchParams.get("sort") || "";
+  const genre = searchParams.get("genre") || "";
   const page = parseInt(searchParams.get("page") || "1");
   const perPage = 9;
 
@@ -70,6 +71,7 @@ function App() {
   const { paginatedData, totalPages } = processPodcasts(podcastData, {
     searchTerm: search,
     sortOrder: sort,
+    genreFilter: genre,
     currentPage: page,
     itemsPerPage: perPage,
   });
@@ -111,6 +113,20 @@ function App() {
           <option value="za">Z-A</option>
           <option value="new">Newest</option>
           <option value="old">Oldest</option>
+        </select>
+      </div>
+
+      <div className="filter">
+        <select
+          value={genre}
+          onChange={(g) => updateParam("genre", g.target.value)}
+        >
+          <option value="">All Genres</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.title}>
+              {genre.title}
+            </option>
+          ))}
         </select>
       </div>
       {loading && <p className="status">Loading podcasts...</p>}
