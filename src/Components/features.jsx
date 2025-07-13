@@ -1,5 +1,15 @@
 import { genres } from "./data";
 
+/**
+ * It process the array of podcast data by using search, filtering, sorting and pagination.
+ *
+ * @param {Array<object>} data - The list of podcast objects that need to be processed
+ * @param {object} options - configuration for the filtering, sorting and pagination
+ *
+ * @returns {{paginatedData, totalPages}}
+ * - paginatedData: The array of podcasts for the current page.
+ * - totalPages - total number of pages available after filtering.
+ */
 export function processPodcasts(
   data,
   { searchTerm, sortOrder, genreFilter, currentPage, itemsPerPage }
